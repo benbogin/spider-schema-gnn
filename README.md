@@ -1,2 +1,3 @@
-# spider-schema-gnn
-Author implementation of the paper "Representing Schema Structure with Graph Neural Networks for Text-to-SQL Parsing"
+# Author implementation: "Representing Schema Structure with Graph Neural Networks for Text-to-SQL Parsing"
+
+The code base will be uploaded soon!

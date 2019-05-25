@@ -74,7 +74,10 @@ def read_dataset_schema(schema_path: str) -> Dict[str, List[Table]]:
 
 def read_dataset_values(db_id: str, dataset_path: str, tables: List[str]):
     db = os.path.join(dataset_path, db_id, db_id + ".sqlite")
-    conn = sqlite3.connect(db)
+    try:
+        conn = sqlite3.connect(db)
+    except Exception as e:
+        raise Exception(f"Can't connect to SQL: {e} in path {db}")
     conn.text_factory = str
     cursor = conn.cursor()
 

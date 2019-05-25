@@ -4,14 +4,21 @@ Author implementation of this [ACL 2019 paper](https://arxiv.org/abs/1905.06241)
 
 ## Install & Configure
 
-1. Install the required packages
+1. Install pytorch version 1.0.1.post2 that fits your CUDA version 
+   
+   (this repository should probably work with the latest pytorch version, but wasn't tested for it. If you use another version, you'll need to also update the versions of packages in `requirements.txt`)
+    ```
+    pip install https://download.pytorch.org/whl/cu100/torch-1.0.1.post2-cp37-cp37m-linux_x86_64.whl # CUDA 10.0 build
+    ```
+    
+2. Install the rest of required packages
     ```
     pip install -r requirements.txt
     ```
 
-2. Download the dataset from the official Spider website
+3. Download the dataset from the official Spider website
 
-3. Edit the config file `train_configs/defaults.jsonnet` to update the location of the dataset:
+4. Edit the config file `train_configs/defaults.jsonnet` to update the location of the dataset:
 ```
 local dataset_path = "dataset/";
 ```
@@ -20,12 +27,12 @@ local dataset_path = "dataset/";
 
 1. Use the following AllenNLP command to train:
 ```
-train train_configs/defaults.jsonnet -s experiments/name_of_experiment \
+allennlp train train_configs/defaults.jsonnet -s experiments/name_of_experiment \
 --include-package dataset_readers.spider \ 
 --include-package models.semantic_parsing.spider_parser
 ``` 
 
-First time loading of the dataset might take a while (a few hours) since the model first loads values from tables and calculates similarity features with the relevant question. It will then be cached.
+First time loading of the dataset might take a while (a few hours) since the model first loads values from tables and calculates similarity features with the relevant question. It will then be cached for concurrent runs.
 
 You should get results similar to the following:
 ```

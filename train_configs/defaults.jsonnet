@@ -7,6 +7,7 @@ local dataset_path = "dataset/";
   "dataset_reader": {
     "type": "spider",
     "tables_file": dataset_path + "tables.json",
+    "dataset_path": dataset_path + "database",
     "lazy": false,
     "keep_if_unparsable": false,
     "loading_limit": -1
@@ -14,6 +15,7 @@ local dataset_path = "dataset/";
   "validation_dataset_reader": {
     "type": "spider",
     "tables_file": dataset_path + "tables.json",
+    "dataset_path": dataset_path + "database",
     "lazy": false,
     "keep_if_unparsable": true,
     "loading_limit": -1

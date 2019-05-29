@@ -32,7 +32,7 @@ allennlp train train_configs/defaults.jsonnet -s experiments/name_of_experiment 
 --include-package models.semantic_parsing.spider_parser
 ``` 
 
-First time loading of the dataset might take a while (a few hours) since the model first loads values from tables and calculates similarity features with the relevant question. It will then be cached for concurrent runs.
+First time loading of the dataset might take a while (a few hours) since the model first loads values from tables and calculates similarity features with the relevant question. It will then be cached for subsequent runs.
 
 You should get results similar to the following:
 ```

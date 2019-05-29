@@ -16,7 +16,7 @@ Author implementation of this [ACL 2019 paper](https://arxiv.org/abs/1905.06241)
     pip install -r requirements.txt
     ```
 
-3. Download the dataset from the official Spider website
+3. Download the dataset from the [official Spider dataset website](https://yale-lily.github.io/spider)
 
 4. Edit the config file `train_configs/defaults.jsonnet` to update the location of the dataset:
 ```
@@ -46,5 +46,20 @@ You should get results similar to the following:
 ```
 
 ## Inference
+
+Use the following AllenNLP command to output a file with the predicted queries:
+
+```
+allennlp predict experiments/name_of_experiment dataset/dev.json \
+--predictor spider \
+--use-dataset-reader \
+--cuda-device=0 \
+--output-file experiments/name_of_experiment/prediction.sql \
+--silent \
+--include-package models.semantic_parsing.spider_parser \
+--include-package dataset_readers.spider \
+--include-package predictors.spider_predictor \
+--weights-file experiments/name_of_experiment/best.th
+```
 
 Trained model files will be uploaded here soon.

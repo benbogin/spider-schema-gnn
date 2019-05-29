@@ -3,6 +3,7 @@ import os
 from functools import partial
 from typing import Dict, List, Tuple, Any, Mapping, Sequence
 
+import sqlparse
 import torch
 from allennlp.common.util import pad_sequence_to_length
 from allennlp.data import Vocabulary
@@ -208,7 +209,8 @@ class SpiderParser(Model):
             self._compute_validation_outputs(valid_actions,
                                              best_final_states,
                                              world,
-                                             action_sequence)
+                                             action_sequence,
+                                             outputs)
             return outputs
 
     def _get_initial_state(self,
@@ -756,8 +758,11 @@ class SpiderParser(Model):
                                     actions: List[List[ProductionRuleArray]],
                                     best_final_states: Mapping[int, Sequence[GrammarBasedState]],
                                     world: List[SpiderWorld],
-                                    target_list: List[List[str]]) -> None:
+                                    target_list: List[List[str]],
+                                    outputs: Dict[str, Any]) -> None:
         batch_size = len(actions)
+
+        outputs['predicted_sql_query'] = []
 
         action_mapping = {}
         for batch_index, batch_actions in enumerate(actions):
@@ -774,6 +779,7 @@ class SpiderParser(Model):
                 self._sql_evaluator_match(0)
                 self._acc_multi(0)
                 self._acc_single(0)
+                outputs['predicted_sql_query'].append('')
                 continue
 
             best_action_indices = best_final_states[i][0].action_history[0]
@@ -781,6 +787,7 @@ class SpiderParser(Model):
             action_strings = [action_mapping[(i, action_index)]
                               for action_index in best_action_indices]
             predicted_sql_query = action_sequence_to_sql(action_strings, add_table_names=True)
+            outputs['predicted_sql_query'].append(sqlparse.format(predicted_sql_query, reindent=False))
 
             if target_list is not None:
                 targets = target_list[i].data

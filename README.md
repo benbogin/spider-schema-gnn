@@ -15,10 +15,15 @@ Author implementation of this [ACL 2019 paper](https://arxiv.org/abs/1905.06241)
     ```
     pip install -r requirements.txt
     ```
+    
+3. Run this command to install NLTK punkt.
+```
+python -c "import nltk; nltk.download('punkt')"
+```
 
-3. Download the dataset from the [official Spider dataset website](https://yale-lily.github.io/spider)
+4. Download the dataset from the [official Spider dataset website](https://yale-lily.github.io/spider)
 
-4. Edit the config file `train_configs/defaults.jsonnet` to update the location of the dataset:
+5. Edit the config file `train_configs/defaults.jsonnet` to update the location of the dataset:
 ```
 local dataset_path = "dataset/";
 ```

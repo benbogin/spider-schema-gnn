@@ -39,7 +39,7 @@ allennlp train train_configs/defaults.jsonnet -s experiments/name_of_experiment 
 
 First time loading of the dataset might take a while (a few hours) since the model first loads values from tables and calculates similarity features with the relevant question. It will then be cached for subsequent runs.
 
-You should get results similar to the following:
+You should get results similar to the following (the `sql_match` is the one measured in the official evaluation test):
 ```
   "best_validation__match/exact_match": 0.31431334622823986,
   "best_validation_sql_match": 0.41876208897485495,
@@ -66,5 +66,3 @@ allennlp predict experiments/name_of_experiment dataset/dev.json \
 --include-package predictors.spider_predictor \
 --weights-file experiments/name_of_experiment/best.th
 ```
-
-Trained model files will be uploaded here soon.

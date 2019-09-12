@@ -791,7 +791,9 @@ class SpiderParser(Model):
 
             if target_list is not None:
                 targets = target_list[i].data
+            target_available = target_list is not None and targets[0] > -1
 
+            if target_available:
                 sequence_in_targets = self._action_history_match(best_action_indices, targets)
                 self._exact_match(sequence_in_targets)
 
@@ -814,7 +816,7 @@ class SpiderParser(Model):
                                   for action_index in action_indices]
                 candidate_sql_query = action_sequence_to_sql(action_strings, add_table_names=True)
 
-                if target_list is not None:
+                if target_available:
                     correct = self._evaluate_func(original_gold_sql_query, candidate_sql_query, world[i].db_id)
                     if correct:
                         beam_hit = True

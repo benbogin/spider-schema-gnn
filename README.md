@@ -64,5 +64,6 @@ allennlp predict experiments/name_of_experiment dataset/dev.json \
 --include-package models.semantic_parsing.spider_parser \
 --include-package dataset_readers.spider \
 --include-package predictors.spider_predictor \
---weights-file experiments/name_of_experiment/best.th
+--weights-file experiments/name_of_experiment/best.th \
+-o "{\"dataset_reader\":{\"keep_if_unparsable\":true}}"
 ```

@@ -41,14 +41,19 @@ First time loading of the dataset might take a while (a few hours) since the mod
 
 You should get results similar to the following (the `sql_match` is the one measured in the official evaluation test):
 ```
-  "best_validation__match/exact_match": 0.31431334622823986,
-  "best_validation_sql_match": 0.41876208897485495,
-  "best_validation__others/action_similarity": 0.5249016759914995,
-  "best_validation__match/match_single": 0.5359712230215827,
-  "best_validation__match/match_hard": 0.2824267782426778,
-  "best_validation_beam_hit": 0.5513937282229965,
-  "best_validation_loss": 7.764545440673828
+  "best_validation__match/exact_match": 0.3715686274509804,
+  "best_validation_sql_match": 0.47549019607843135,
+  "best_validation__others/action_similarity": 0.5731271471206189,
+  "best_validation__match/match_single": 0.6254612546125461,
+  "best_validation__match/match_hard": 0.3054393305439331,
+  "best_validation_beam_hit": 0.6070588235294118,
+  "best_validation_loss": 7.383035182952881
+  "best_epoch": 32
 ```
+
+Note that the hyper-parameters used in `defaults.jsonnet` are different than those mentioned in the paper
+(most importantly, 3 timesteps are used instead of 2), thanks to the [following contribution from @wlhgtc](https://github.com/benbogin/spider-schema-gnn/pull/13).
+The original training config file is still available in `train_configs/paper_Defaults.jsonnet`.
 
 ## Inference
 

@@ -2,6 +2,8 @@
 
 Author implementation of this [ACL 2019 paper](https://arxiv.org/abs/1905.06241).
 
+Please also see the [follow-up repository](https://github.com/benbogin/spider-schema-gnn-global) with improved results, for this [EMNLP paper](https://www.aclweb.org/anthology/D19-1378.pdf).
+
 ## Install & Configure
 
 1. Install pytorch version 1.0.1.post2 that fits your CUDA version 

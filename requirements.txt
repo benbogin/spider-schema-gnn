@@ -1,4 +1,4 @@
-torch==1.0.1.post2
+torch==2.2.0
 spacy==2.0.18
 allennlp==0.8.2
 dill
